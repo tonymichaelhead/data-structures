@@ -1,20 +1,33 @@
 var Set = function() {
   var set = Object.create(setPrototype);
-  set._storage = null; // fix me
+  set._storage = [];
   return set;
 };
 
 var setPrototype = {};
 
 setPrototype.add = function(item) {
+  //check if item already exists in set._storage
+  if (!this.contains(item)) {
+    this._storage.push(item);
+  }
 };
 
 setPrototype.contains = function(item) {
+  return this._storage.includes(item);
 };
 
 setPrototype.remove = function(item) {
+  if(!this._storage.includes(item)) { return null; }
+
+  this._storage.splice(this._storage.indexOf(item),1);
 };
+
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ add = O(1) - Constant because you are just pushing new items into end of array.
+ contains = O(n) - Linear because you must iterate over each item in the array to see if it is included.
+ remove = O(n) - Linear because you must iterate over the storage in order to find the index of the item you want to delete.
  */
+
