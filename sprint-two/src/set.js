@@ -18,15 +18,16 @@ setPrototype.contains = function(item) {
 };
 
 setPrototype.remove = function(item) {
-  if(!this._storage.includes(item)) { return null; }
+  if (!this._storage.includes(item)) { return null; }
 
-  this._storage.splice(this._storage.indexOf(item),1);
+  this._storage.splice(this._storage.indexOf(item), 1);
 };
 
 
 /*
  * Complexity: What is the time complexity of the above functions?
- add = O(1) - Constant because you are just pushing new items into end of array.
+ add = O(n) - Linear because you must iterate over items in the array to see if they are already in the 
+ array or not, and push only if they are unique.
  contains = O(n) - Linear because you must iterate over each item in the array to see if it is included.
  remove = O(n) - Linear because you must iterate over the storage in order to find the index of the item you want to delete.
  */
