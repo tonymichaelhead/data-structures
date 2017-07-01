@@ -23,6 +23,11 @@ describe('linkedList', function() {
     expect(linkedList.tail.value).to.equal(5);
   });
 
+  it('Head node and tail node should equal each other when there is only one node', function() {
+    linkedList.addToTail(5);
+    expect(linkedList.tail.value).to.equal(linkedList.head.value);
+  });
+
   it('should remove the head from the list when removeHead is called', function() {
     linkedList.addToTail(4);
     linkedList.addToTail(5);
