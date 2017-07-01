@@ -20,6 +20,17 @@ describe('binarySearchTree', function() {
     expect(binarySearchTree.right.left.value).to.equal(6);
   });
 
+  //Left node should be less than parent node
+  it('left node should be less than parent node', function() {
+    binarySearchTree.insert(3);
+    expect(binarySearchTree.left.value).to.be.below(binarySearchTree.value);
+  });
+  //Right node should be more than parent node
+  it('right node should be more than parent node', function() {
+    binarySearchTree.insert(10);
+    expect(binarySearchTree.right.value).to.be.above(binarySearchTree.value);
+  });
+
   it('should have a working "contains" method', function() {
     binarySearchTree.insert(2);
     binarySearchTree.insert(3);
