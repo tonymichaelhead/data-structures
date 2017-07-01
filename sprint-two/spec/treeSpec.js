@@ -2,7 +2,11 @@ describe('tree', function() {
   var tree;
 
   beforeEach(function() {
-    tree = Tree();
+    tree = Tree(5);
+  });
+
+  it('should be initialized with a value', function() {
+    expect(tree.value).to.not.equal(undefined);
   });
 
   it('should have methods named "addChild" and "contains", and a property named "value"', function() {
