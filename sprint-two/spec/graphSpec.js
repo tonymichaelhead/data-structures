@@ -68,4 +68,10 @@ describe('graph', function() {
     expect(graph.hasEdge(3, 5)).to.equal(true);
     expect(graph.hasEdge(5, 5)).to.equal(true);
   });
+  
+  it('if no callback is supplied returns null', function() {
+    graph.addNode(5);
+    expect(graph.forEachNode()).to.equal(null);
+  });
+
 });
