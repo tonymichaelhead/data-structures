@@ -2,7 +2,7 @@
 
 var HashTable = function() {
   this._limit = 8;
-  this._storage = LimitedArray(this._limit); //limited array: {}
+  this._storage = LimitedArray(this._limit); 
 };
 
 HashTable.prototype.insert = function(k, v) {
@@ -14,11 +14,29 @@ HashTable.prototype.insert = function(k, v) {
     
     newHash.push(tuple);
     this._storage.set(index, newHash);
-    
   } else {
-    currentHash = this._storage.get(index);
-    currentHash.push([k, v]);
-  }
+  
+    var wasFound = this.includes(k);
+    
+    if (!wasFound) {
+      currentHash = this._storage.get(index);
+      currentHash.push([k, v]);
+    } else {
+      this._storage.get(index).forEach(function(tuple) {
+        if (tuple[0] === k) {
+          tuple[1] = v;
+        }
+      }); 
+    }
+  }   
+};
+
+HashTable.prototype.includes = function(k) {
+  var index = getIndexBelowMaxForKey(k, this._limit);
+  
+  return this._storage.get(index).reduce(function(wasFound, tuple) {
+    return wasFound === true || tuple[0] === k;
+  }, false);
 };
 
 HashTable.prototype.retrieve = function(k) {
@@ -49,8 +67,8 @@ HashTable.prototype.remove = function(k) {
 /*
  * Complexity: What is the time complexity of the above functions?
  insert = constant O(1)
- retrieve = O(n)
- remove = O(n)
+ retrieve = constant O(1)
+ remove = constant O(1)
  */
 
 
